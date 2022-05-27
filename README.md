@@ -49,5 +49,42 @@ export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 ```sh
 npm install -g yarn
-yarn install && yarn dev
+yarn install
+yarn dev
 ```
+
+Log in with `johndoe` and `s3cret`
+
+## Create a simple test
+
+TransactionCreateStepTwo.test.js
+
+```js
+import { render, screen } from "@testing-library/react";
+import TransactionCreateStepTwo from "./TransactionCreateStepTwo";
+
+test("On initial render the pay button is disabled", async () => {
+  render(<TransactionCreateStepTwo sender={{ id: "5" }} receiver={{ id: "5" }} />);
+
+  expect(await screen.findByRole("button", { name: /pay/i })).toBeDisabled();
+});
+```
+
+## Run simple test
+
+```sh
+yarn test
+.
+ PASS  src/components/TransactionCreateStepTwo.test.js
+  ✓ On initial render the pay button is disabled (124 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.912 s, estimated 2 s
+Ran all test suites related to changed files.
+
+Watch Usage: Press w to show more.
+```
+
+Up to 19 min 12 sec
